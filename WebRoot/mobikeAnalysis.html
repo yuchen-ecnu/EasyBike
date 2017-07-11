@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>摩拜单车数据分析</title>
+<link rel="stylesheet" href="assets/css/amazeui.css" />
+<link rel="stylesheet" href="assets/css/core.css" />
+<link rel="stylesheet" href="assets/css/menu.css" />
+<link rel="stylesheet" href="assets/css/index.css" />
+<link rel="stylesheet" href="assets/css/admin.css" />
+<link rel="stylesheet" href="assets/css/page/typography.css" />
+<link rel="stylesheet" href="assets/css/page/form.css" />
+<link rel="stylesheet" href="assets/css/component.css" />
+</head>
+<body>
+	<!-- Begin page -->
+	<header class="am-topbar am-topbar-fixed-top">
+		<div class="am-topbar-left am-hide-sm-only">
+			<a href="index.html" class="logo"><span>Easy<span>Bike</span>
+			</span><i class="zmdi zmdi-layers"></i> </a>
+		</div>
+
+		<div class="contain">
+			<ul class="am-nav am-navbar-nav am-navbar-left">
+
+				<li><h4 class="page-title">mobike单车信息</h4></li>
+			</ul>
+
+			<ul class="am-nav am-navbar-nav am-navbar-right">
+				<li class="inform"><i class="am-icon-bell-o" aria-hidden="true"></i>
+				</li>
+				<li class="hidden-xs am-hide-sm-only">
+					<form role="search" class="app-search">
+						<input type="text" placeholder="Search..." class="form-control">
+						<a href=""><img src="assets/img/search.png"> </a>
+					</form>
+				</li>
+			</ul>
+		</div>
+	</header>
+	<!-- end page -->
+
+
+	<div class="admin">
+		<!--<div class="am-g">-->
+		<!-- ========== Left Sidebar Start ========== -->
+		<!--<div class="left side-menu am-hide-sm-only am-u-md-1 am-padding-0">
+			<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 548px;">
+				<div class="sidebar-inner slimscrollleft" style="overflow: hidden; width: auto; height: 548px;">-->
+		<!-- sidebar start -->
+		<div class="admin-sidebar am-offcanvas  am-padding-0"
+			id="admin-offcanvas" style="overflow-y: hidden;">
+			<div class="am-offcanvas-bar admin-offcanvas-bar">
+				<!-- User -->
+				<div class="user-box am-hide-sm-only">
+					<div class="user-img">
+						<img src="assets/img/avatar-1.jpg" alt="user-img"
+							title="Mat Helme" class="img-circle img-thumbnail img-responsive">
+						<div class="user-status offline">
+							<i class="am-icon-dot-circle-o" aria-hidden="true"></i>
+						</div>
+					</div>
+					<h5>
+						<a href="#">管理员</a>
+					</h5>
+					<ul class="list-inline">
+						<li><a href="#"> <i class="fa fa-cog" aria-hidden="true"></i>
+						</a></li>
+
+						<li><a href="#" class="text-custom"> <i class="fa fa-cog"
+								aria-hidden="true"></i>
+						</a></li>
+					</ul>
+				</div>
+				<!-- End User -->
+				<ul class="am-list admin-sidebar-list">
+					<li><a href="index.html"><span class="am-icon-home"></span>
+							首页</a></li>
+					<li class="admin-parent"><a class="am-cf"
+						data-am-collapse="{target: '#collapse-nav1'}"><span
+							class="am-icon-line-chart"></span> 单车管理 <span
+							class="am-icon-angle-right am-fr am-margin-right"></span> </a>
+						<ul class="am-list am-collapse admin-sidebar-sub am-in"
+							id="collapse-nav1">
+							<li><a href="BikeManage.html" class="am-cf"> 单车位置 </a></li>
+							<li><a href="TraceManage.html">投放推荐</a></li>
+						</ul></li>
+					<li class="admin-parent"><a class="am-cf"
+						data-am-collapse="{target: '#collapse-nav2'}"><span
+							class="am-icon-line-chart"></span> 用户管理 <span
+							class="am-icon-angle-right am-fr am-margin-right"></span> </a>
+						<ul class="am-list am-collapse admin-sidebar-sub am-in"
+							id="collapse-nav2">
+							<li><a href="UserStatistics.html" class="am-cf"> 统计信息 </a></li>
+							<li><a href="UserManage.html">用户列表</a></li>
+						</ul></li>
+					<li><a href="RepairManage.html"><span class="am-icon-file"></span>
+							维修管理</a></li>
+					<li><a href="mobikeAnalysis.html"><span
+							class="am-icon-file"></span> 摩拜单车移动轨迹</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- sidebar end -->
+
+		<!--</div>
+			</div>
+		</div>-->
+		<!-- ========== Left Sidebar end ========== -->
+
+
+
+		<!--	<div class="am-g">-->
+		<!-- ============================================================== -->
+		<!-- Start right Content here -->
+		<div class="content-page">
+			<!-- Start content -->
+			<div class="content">
+
+				<div class="card-box">
+					<div class="am-g">
+						<!-- Row start -->
+						<div class="am-u-md-12">
+							<div id="mapContainer" style="width:100%; height:500px"></div>
+						</div>
+					</div>
+					<!-- Row end -->
+				</div>
+				<div class="card-box">
+					<!-- Row start -->
+					<div class="am-g">
+						<div class="am-u-md-12">
+							<div class="am-btn-toolbar">
+								<div class="am-btn-group am-btn-group-xs">
+									<button onclick="showAllBike()" type="button"
+										class="am-btn am-btn-default">
+										<span class="am-icon-archive"></span> 全部显示
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="am-u-sm-12 am-u-md-3">
+							<div class="am-input-group am-input-group-sm">
+								<input type="text" class="am-form-field" id="pages"> <span
+									class="am-input-group-btn">
+									<button class="am-btn am-btn-default" type="button" onclick="loadByPage();">跳转到</button>
+								</span>
+							</div>
+						</div>
+					</div>
+					<!-- Row end -->
+					<div>
+						<!-- Row start -->
+						<div class="am-g">
+							<div class="am-u-sm-12">
+								<form class="am-form">
+									<table
+										class="am-table am-table-striped am-table-hover table-main">
+										<thead>
+											<tr>
+												<th class="table-id">ID</th>
+												<th class="table-title">车牌号</th>
+												<th class="table-date am-hide-sm-only">车型</th>
+												<th class="table-title">纬度</th>
+												<th class="table-type">经度</th>
+												<th class="table-type">轨迹数量</th>
+												<th class="table-author am-hide-sm-only">捕获时间</th>
+												<th class="table-set">操作</th>
+											</tr>
+										</thead>
+										<tbody id="usertbody">
+
+										</tbody>
+									</table>
+									<div class="am-cf">
+										共 15 条记录
+										<div class="am-fr">
+											<ul class="am-pagination">
+												<li class="am-disabled"><a href="#">«</a></li>
+												<li class="am-active"><a href="#">1</a></li>
+												<li><a href="#">2</a></li>
+												<li><a href="#">3</a></li>
+												<li><a href="#">4</a></li>
+												<li><a href="#">5</a></li>
+												<li><a href="#">»</a></li>
+											</ul>
+										</div>
+									</div>
+									<hr />
+									<p>注：.....</p>
+								</form>
+							</div>
+
+						</div>
+						<!-- Row end -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end right Content here -->
+
+		<!-- navbar -->
+		<a href="admin-offcanvas"
+			class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu"
+			data-am-offcanvas="{target: '#admin-offcanvas'}"> <!--<i class="fa fa-bars" aria-hidden="true"></i>-->
+		</a>
+
+		<script type="text/javascript" src="assets/js/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="assets/js/amazeui.min.js"></script>
+		<script type="text/javascript" src="assets/js/app.js"></script>
+		<script type="text/javascript" src="assets/js/blockUI.js"></script>
+		<script type="text/javascript" src="assets/js/charts/echarts.min.js"></script>
+		<script type="text/javascript" src="assets/js/charts/indexChart.js"></script>
+		<script type="text/javascript"
+			src="http://webapi.amap.com/maps?v=1.3&key=bef6d4f09241ab4cd125beaedf2ff028&plugin=AMap.AdvancedInfoWindow"></script>
+		<script type="text/javascript" src="assets/js/layer.js"></script>
+		<!--引入UI组件库（1.0版本） -->
+		<script src="//webapi.amap.com/ui/1.0/main.js"></script>
+
+		<script type="text/javascript">
+
+	</script>
+		<script type="text/javascript">
+			var map;
+			var loadingmask;
+		
+			var biketype = new Array();
+			var icon = new AMap.Icon({
+				image : 'http://115.159.35.11:8080/easybike/assets/img/bike_marker.png',
+				size : new AMap.Size(50, 50)
+			});
+			function init() {
+				map = new AMap.Map('mapContainer', {
+					resizeEnable : true,
+					zoom : 16,
+					center : [ 121.403316, 31.229611 ]
+				});
+				map.plugin([ "AMap.ToolBar" ], function() {
+					map.addControl(new AMap.ToolBar());
+				});
+			}
+		
+			$(window)
+				.on(
+					'load',
+					function() {
+						$("#pages").val(1);
+						loadingmask = layer.load(0); //又换了种风格，并且设定最长等待10秒 
+						init();
+						initMap();
+						 loadByPage();
+					});
+		</script>
+		<script type="text/javascript">
+			function initialtable(item) {
+				//初始化表格
+				var node = $("#usertbody");
+				var shtml = "<tr onclick='fun1(" + item.distid + ");'><td>" + item.mobikeid + "</td>"
+					+ "<td>" + item.distid + "</td>"
+					+ "<td>" + biketype[item.biketype] + "</td>"
+					+ "<td>" + item.lon + "</td>"
+					+ "<td>" + item.lat + "</td>"
+					+ "<td>" + item.tripcount + "</td>"
+					+ "<td>" + timeStamp2String(item.time) + "</td>"
+					+ "<td><img src='assets/img/mobiketrace.png' halt='查看车辆运行轨迹' title='查看车辆运行轨迹' data='" + item.distid + "' onclick='getBikeTrip($(this));'/>"
+					+ "&nbsp;&nbsp;<img src='assets/img/mobikeAnalysis.png' alt='车辆使用情况分析' title='车辆使用情况分析' data='" + item.distid + "' onclick='mobikeAnalysis($(this));'/>"
+					+ "</td></tr>";
+				node.append(shtml);
+		
+			}
+		</script>
+
+		<script type="text/javascript">
+			function getBikeTrip(node) {
+				location.href = "mobikeTrip.html?userid=" + node.attr("data") + "&biketype=" + node.parent().prev().prev().text();
+			}
+		
+			function mobikeAnalysis(node) {
+				location.href = "perMobikeAnalysis.html?userid=" + node.attr("data")+ "&biketype=" + node.parent().prev().prev().text();
+			}
+		</script>
+
+		<script type="text/javascript">
+			function initMap() {
+				$
+					.ajax({
+						url : "http://localhost:8080/easybike/restful/bike/getMobike",
+						type : "post",
+						success : function(result) {
+							var r = $.parseJSON(result);
+							var obj = r.obj;
+							var retcode = r.retcode;
+							var errorMsg = r.errorMsg;
+							if (retcode != "0000") {
+								alert(errorMsg);
+								layer.close(loadingmask);
+							} else {
+								var arr = new Array();
+		
+								biketype[999] = "Mobike Lite";
+								biketype[2] = "Mobike 标准车";
+								biketype[1] = "Mobike 轻骑";
+								$
+									.each(
+										obj,
+										function(index,
+											tmp) {
+											item = tmp;
+											arr.push({
+												position : [ item.lon, item.lat ],
+												bikeid : item.distid,
+												biketype : biketype[item.biketype],
+												time : timeStamp2String(item.time)
+											});
+											//if (index < 50) initialtable(item);
+										})
+								
+								//海量点展示
+								AMapUI.load([ 'ui/misc/PointSimplifier', 'lib/$' ], function(PointSimplifier, $) {
+		
+									if (!PointSimplifier.supportCanvas) {
+										alert('当前环境不支持 Canvas！');
+										return;
+									}
+		
+									var pointSimplifierIns = new PointSimplifier({
+										map : map, //所属的地图实例
+		
+										getPosition : function(dataitem) {
+											if (!dataitem) {
+												return null;
+											}
+		
+											//返回经纬度
+											return dataitem.position;
+										},
+										getHoverTitle : function(dataItem, idx) {
+											return "车牌号：" + dataItem.bikeid + "<br/>"
+												+ "车型：" + dataItem.biketype + "<br/>"
+												+ "骑行次数：" + dataItem.tripcount + "<br/>"
+												+ "纬度：" + dataItem.position[1] + "<br/>"
+												+ "经度：" + dataItem.position[0] + "<br/>"
+												+ "采集时间：" + dataItem.time;
+										},
+										renderOptions : {
+											//点的样式
+											pointStyle : {
+												width : 6,
+												height : 6
+											},
+											//鼠标hover时的title信息
+											hoverTitleStyle : {
+												position : 'top'
+											}
+										}
+									});
+									pointSimplifierIns.setData(arr);
+									pointSimplifierIns.on('pointClick', function(e, record) {
+										location.href = "mobikeTrip.html?userid=" + record.data.bikeid + "&biketype=" + record.data.biketype;
+									});
+									layer.close(loadingmask);
+								});
+							}
+		
+						}
+					});
+			}
+		</script>
+		<script type="text/javascript">
+		function loadByPage() {
+		var pages = $("#pages").val();
+			var re = /^[0-9]+.?[0-9]*$/; //判断字符串是否为数字 //判断正整数 /^[1-9]+[0-9]*]*$/ 	
+			if (!re.test(pages)) {
+				layer.alert("请输入数字");
+				return false;
+			}
+			biketype[999] = "Mobike Lite";
+			biketype[2] = "Mobike 标准车";
+			biketype[1] = "Mobike 轻骑";
+			$
+				.ajax({
+					url : "http://localhost:8080/easybike/restful/bike/getMobikeByPage",
+					type : "post",
+					dataType : "json",
+					data : {
+						"PNO" : pages,
+						"PSIZE" : "10"
+					},
+					success : function(result) {
+						var r = result;
+						var obj = r.obj;
+						var retcode = r.retcode;
+						var errorMsg = r.errorMsg;
+						if (retcode != "0000") {
+						    alert(errorMsg);
+							return;
+						}
+						$("#usertbody").empty(); 
+						$.each(obj, function(index, item) {
+							//初始化表格
+				var node = $("#usertbody");
+				var shtml = "<tr onclick='fun1(" + item.distid + ");'><td>" + item.mobikeid + "</td>"
+					+ "<td>" + item.distid + "</td>"
+					+ "<td>" + biketype[item.biketype] + "</td>"
+					+ "<td>" + item.lon + "</td>"
+					+ "<td>" + item.lat + "</td>"
+					+ "<td>" + item.tripcount + "</td>"
+					+ "<td>" + timeStamp2String(item.time) + "</td>"
+					+ "<td><img src='assets/img/mobiketrace.png' halt='查看车辆运行轨迹' title='查看车辆运行轨迹' data='" + item.distid + "' onclick='getBikeTrip($(this));'/>"
+					+ "&nbsp;&nbsp;<img src='assets/img/mobikeAnalysis.png' alt='车辆使用情况分析' title='车辆使用情况分析' data='" + item.distid + "' onclick='mobikeAnalysis($(this));'/>"
+					+ "</td></tr>";
+				node.append(shtml);
+						});
+	
+					}
+				});
+		}
+	</script>
+		<script type="text/javascript">
+			function fun1(bike_id) {
+				$
+					.ajax({
+						url : "http://localhost:8080/easybike/restful/bike/getmobikeById",
+						type : "post",
+						data : {
+							"id" : bike_id
+						},
+						success : function(result) {
+							var r = $.parseJSON(result);
+							var obj = r.obj;
+							var retcode = r.retcode;
+							var errorMsg = r.errorMsg;
+							if (retcode != "0000") {
+								layer.alert(errorMsg);
+							} else {
+								map.clearMap();
+								var item = obj[0];
+								var marker = new AMap.Marker({
+									icon : icon,
+									position : [ item.lon, item.lat ],
+									map : map
+								});
+								map.add(marker);
+								var content = "ID：" + item.distid + "<br/>"
+								+ "纬度：" + item.lat + "<br/>"
+								+ "经度：" + item.lon + "<br/>"
+								+ "车型：" + item.biketype + "<br/>"
+								+ "采集时间：" + item.time;
+								var infowindow = new AMap.AdvancedInfoWindow({
+									content : content,
+									asOrigin : false,
+									asDestination : false,
+									offset : new AMap.Pixel(0, -30)
+								});
+								marker.on('click', function() {
+									infowindow.open(map, [ item.lon, item.lat ]);
+								});
+		
+		
+							}
+		
+						}
+					});
+			}
+		</script>
+
+
+		<script type="text/javascript">
+		function func(node) {
+			var node = node;
+		}
+	
+		function timeStamp2String(time) {
+			var datetime = new Date();
+			datetime.setTime(time);
+			var year = datetime.getFullYear();
+			var month = datetime.getMonth() + 1;
+			var date = datetime.getDate();
+			var hour = datetime.getHours();
+			var minute = datetime.getMinutes();
+			var second = datetime.getSeconds();
+			var mseconds = datetime.getMilliseconds();
+			return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+		}
+		;
+	</script>
+</body>
+</html>

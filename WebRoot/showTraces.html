@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<title>后台模板</title>
+<link rel="stylesheet" href="assets/css/amazeui.css" />
+<link rel="stylesheet" href="assets/css/core.css" />
+<link rel="stylesheet" href="assets/css/menu.css" />
+<link rel="stylesheet" href="assets/css/index.css" />
+<link rel="stylesheet" href="assets/css/admin.css" />
+<link rel="stylesheet" href="assets/css/page/typography.css" />
+<link rel="stylesheet" href="assets/css/page/form.css" />
+<link rel="stylesheet" href="assets/css/component.css" />
+
+</head>
+<body>
+	<!-- Begin page -->
+	<header class="am-topbar am-topbar-fixed-top">
+		<div class="am-topbar-left am-hide-sm-only">
+			<a href="index.html" class="logo"><span>Easy<span>Bike</span>
+			</span><i class="zmdi zmdi-layers"></i> </a>
+		</div>
+
+		<div class="contain">
+			<ul class="am-nav am-navbar-nav am-navbar-left">
+
+				<li><h4 class="page-title">用户轨迹</h4></li>
+			</ul>
+
+			<ul class="am-nav am-navbar-nav am-navbar-right">
+				<li class="inform"><i class="am-icon-bell-o" aria-hidden="true"></i>
+				</li>
+				<li class="hidden-xs am-hide-sm-only">
+					<form role="search" class="app-search">
+						<input type="text" placeholder="Search..." class="form-control">
+						<a href=""><img src="assets/img/search.png"> </a>
+					</form>
+				</li>
+			</ul>
+		</div>
+	</header>
+	<!-- end page -->
+
+
+	<div class="admin">
+		<!--<div class="am-g">-->
+		<!-- ========== Left Sidebar Start ========== -->
+		<!--<div class="left side-menu am-hide-sm-only am-u-md-1 am-padding-0">
+			<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 548px;">
+				<div class="sidebar-inner slimscrollleft" style="overflow: hidden; width: auto; height: 548px;">-->
+		<!-- sidebar start -->
+		<div class="admin-sidebar am-offcanvas  am-padding-0"
+			id="admin-offcanvas" style="overflow-y: hidden;">
+			<div class="am-offcanvas-bar admin-offcanvas-bar">
+				<!-- User -->
+				<div class="user-box am-hide-sm-only">
+					<div class="user-img">
+						<img src="assets/img/avatar-1.jpg" alt="user-img"
+							title="Mat Helme" class="img-circle img-thumbnail img-responsive">
+						<div class="user-status offline">
+							<i class="am-icon-dot-circle-o" aria-hidden="true"></i>
+						</div>
+					</div>
+					<h5>
+						<a href="#">管理员</a>
+					</h5>
+					<ul class="list-inline">
+						<li><a href="#"> <i class="fa fa-cog" aria-hidden="true"></i>
+						</a></li>
+
+						<li><a href="#" class="text-custom"> <i class="fa fa-cog"
+								aria-hidden="true"></i>
+						</a></li>
+					</ul>
+				</div>
+				<!-- End User -->
+				<ul class="am-list admin-sidebar-list">
+					<li><a href="index.html"><span class="am-icon-home"></span>
+							首页</a></li>
+					<li class="admin-parent"><a class="am-cf"
+						data-am-collapse="{target: '#collapse-nav1'}"><span
+							class="am-icon-line-chart"></span> 单车管理 <span
+							class="am-icon-angle-right am-fr am-margin-right"></span> </a>
+						<ul class="am-list am-collapse admin-sidebar-sub am-in"
+							id="collapse-nav1">
+							<li><a href="BikeManage.html" class="am-cf"> 单车位置
+							</a></li>
+							<li><a href="TraceManage.html">轨迹管理</a></li>
+						</ul></li>
+					<li class="admin-parent"><a class="am-cf"
+						data-am-collapse="{target: '#collapse-nav2'}"><span
+							class="am-icon-line-chart"></span> 用户管理 <span
+							class="am-icon-angle-right am-fr am-margin-right"></span> </a>
+						<ul class="am-list am-collapse admin-sidebar-sub am-in"
+							id="collapse-nav2">
+							<li><a href="UserStatistics.html" class="am-cf"> 统计信息
+							</a></li>
+							<li><a href="UserManage.html">用户列表</a></li>
+						</ul></li>
+					<li><a href="RepairManage.html"><span class="am-icon-file"></span>
+							维修管理</a></li>
+					<li><a href="mobikeAnalysis.html"><span class="am-icon-file"></span>
+					摩拜单车数据分析</a></li>
+					<li><a href="AccusationManage.html"><span class="am-icon-file"></span>
+					举报管理</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- sidebar end -->
+
+		<!--</div>
+			</div>
+		</div>-->
+		<!-- ========== Left Sidebar end ========== -->
+
+
+
+		<!--	<div class="am-g">-->
+		<!-- ============================================================== -->
+		<!-- Start right Content here -->
+		<div class="content-page">
+			<!-- Start content -->
+			<div class="content">
+
+				<div class="card-box">
+					<div class="am-g">
+						<!-- Row start -->
+						<div class="am-u-md-12">
+							<div id="mapContainer" style="width:100%; height:500px"></div>
+						</div>
+					</div>
+					<!-- Row end -->
+				</div>
+
+				<div class="am-g">
+					<!-- Row start -->
+					<div class="am-u-md-3">
+						<div class="card-box">
+							<h4 class="header-title m-t-0 m-b-30">平均速度</h4>
+							<div class="widget-chart-1 am-cf">
+								<div id="speed-chart"
+									style="height: 110px;width: 200px;float: left;"></div>
+								<div class="widget-detail-1" style="float: right;">
+									<h2 class="p-t-10 m-b-0" id="speed_text">0</h2>
+									<p class="text-muted">平均速度</p>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- col end -->
+					<div class="am-u-md-3">
+						<div class="card-box">
+							<h4 class="header-title m-t-0 m-b-30">总路程</h4>
+							<div class="widget-chart-1 am-cf">
+								<div id="length-chart"
+									style="height: 110px;width: 200px;float: left;"></div>
+								<div class="widget-detail-1" style="float: right;">
+									<h2 class="p-t-10 m-b-0" id="length_text">0</h2>
+									<p class="text-muted">总路程</p>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- col end -->
+					<div class="am-u-md-3">
+						<div class="card-box">
+							<h4 class="header-title m-t-0 m-b-30">上坡/下坡</h4>
+							<div class="widget-chart-1 am-cf">
+								<div id="uphill-chart"
+									style="height: 110px;width: 200px;float: left;"></div>
+								<div class="widget-detail-1" style="float: right;">
+									<h2 class="p-t-10 m-b-0" id="uphill_text">0</h2>
+									<p class="text-muted">上坡/下坡</p>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- col end -->
+					<div class="am-u-md-3">
+						<div class="card-box">
+							<h4 class="header-title m-t-0 m-b-30">卡路里</h4>
+							<div class="widget-chart-1 am-cf">
+								<div id="calories-chart"
+									style="height: 110px;width: 200px;float: left;"></div>
+								<div class="widget-detail-1" style="float: right;">
+									<h2 class="p-t-10 m-b-0" id="calories_text">0</h2>
+									<p class="text-muted">卡路里</p>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- Row end -->
+			</div>
+
+			<div class="card-box">
+				<!-- Row start -->
+				<div class="am-g">
+					<div class="am-u-md-12">
+						<div class="am-btn-toolbar">
+							<div class="am-btn-group am-btn-group-xs">
+								<button type="button" class="am-btn am-btn-default">
+									<span class="am-icon-plus"></span> 新增
+								</button>
+								<button type="button" class="am-btn am-btn-default">
+									<span class="am-icon-save"></span> 保存
+								</button>
+								<button type="button" class="am-btn am-btn-default">
+									<span class="am-icon-archive"></span> 审核
+								</button>
+								<button type="button" class="am-btn am-btn-default">
+									<span class="am-icon-trash-o"></span> 删除
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="am-u-sm-12 am-u-md-3">
+						<div class="am-input-group am-input-group-sm">
+							<input type="text" class="am-form-field"> <span
+								class="am-input-group-btn">
+								<button class="am-btn am-btn-default" type="button">搜索</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<!-- Row end -->
+
+				<!-- Row start -->
+				<div class="am-g">
+					<div class="am-u-sm-12">
+						<form class="am-form">
+
+							<table
+								class="am-table am-table-striped am-table-hover table-main">
+								<thead>
+									<tr>
+										<th class="table-id">ID</th>
+										<th class="table-title">用户名</th>
+										<th class="table-type">单车号</th>
+										<th class="table-type">单车类型</th>
+										<th class="table-author am-hide-sm-only">起始时间</th>
+										<th class="table-date am-hide-sm-only">结束时间</th>
+										<th class="table-date am-hide-sm-only">平均速度</th>
+										<th class="table-date am-hide-sm-only">总长</th>
+										<th class="table-date am-hide-sm-only">上坡次数</th>
+										<th class="table-date am-hide-sm-only">下坡次数</th>
+										<th class="table-date am-hide-sm-only">卡路里</th>
+										<th class="table-set">操作</th>
+									</tr>
+								</thead>
+								<tbody id="usertbody">
+
+								</tbody>
+							</table>
+							<hr />
+							<p>注：数据均来自真实生活</p>
+						</form>
+
+					</div>
+					<!-- Row end -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end right Content here -->
+
+	<!-- navbar -->
+	<a href="admin-offcanvas"
+		class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu"
+		data-am-offcanvas="{target: '#admin-offcanvas'}"> <!--<i class="fa fa-bars" aria-hidden="true"></i>-->
+	</a>
+
+	<script type="text/javascript" src="assets/js/jquery-2.1.0.js"></script>
+	<script type="text/javascript" src="assets/js/amazeui.min.js"></script>
+	<script type="text/javascript" src="assets/js/app.js"></script>
+	<script type="text/javascript" src="assets/js/blockUI.js"></script>
+	<script type="text/javascript" src="assets/js/charts/echarts.min.js"></script>
+	<script type="text/javascript" src="assets/js/charts/indexChart.js"></script>
+	<script charset="utf-8"
+		src="http://api.map.baidu.com/api?v=2.0&ak=oVdoUZCVMdvV94D5kAmVCtmRP0Wifzai"></script>
+
+	<script type="text/javascript">
+		var map;
+		function init() {
+			map = new BMap.Map("mapContainer"); // 创建地图实例  
+			var point = new BMap.Point(121.409888, 31.235534); // 创建点坐标  
+			map.centerAndZoom(point, 20); // 初始化地图，设置中心点坐标和地图级别  
+			map.addControl(new BMap.NavigationControl());
+			map.addControl(new BMap.ScaleControl());
+			map.addControl(new BMap.OverviewMapControl());
+			map.addControl(new BMap.MapTypeControl());
+			map.enableScrollWheelZoom(); // 启动鼠标滚轮操作
+		}
+	
+		$(window)
+			.on(
+				'load',
+				function() {
+					init();
+					initTable();
+				});
+	</script>
+	<script type="text/javascript">
+		function initTable() {
+			$
+				.ajax({
+					url : "http://115.159.122.41:8080/easybike/restful/trip/getTracesById",
+					type : "post",
+					dataType : "json",
+					data : {
+						"userid" : GetRequest()["userid"]
+					},
+					success : function(result) {
+						var r = result;
+						var obj = r.obj;
+						var retcode = r.retcode;
+						var errorMsg = r.errorMsg;
+						$.each(obj, function(index, item) {
+							var shtml = "<tr><td class='am-hide-sm-only'>" + item.tripId + "</td>"
+								+ "<td class='am-hide-sm-only'>" + item.name + "</td>"
+								+ "<td class='am-hide-sm-only'>" + item.bikeId + "</td>"
+								+ "<td class='am-hide-sm-only'>" + item.type + "</td>"
+								+ "<td class='am-hide-sm-only'>" + changeTime(item.startTime) + "</td>"
+								+ "<td class='am-hide-sm-only'>" + changeTime(item.endTime) + "</td>"
+								+ "<td class='am-hide-sm-only'>" + item.avgSpeed + "</td>"
+								+ "<td class='am-hide-sm-only'>" + item.totalLength + "</td>"
+								+ "<td class='am-hide-sm-only'>" + item.uphillTimes + "</td>"
+								+ "<td class='am-hide-sm-only'>" + item.downhillTimes + "</td>"
+								+ "<td class='am-hide-sm-only'>" + item.calories + "</td>"
+								+ "<td><img src='assets/img/showtrace.png' height='20' width='20' alt='显示轨迹' data='" + item.tripId + "' onclick='showTrace($(this));'/></td></tr>";
+							$("#usertbody").append(shtml);
+						});
+					}
+				});
+		}
+	</script>
+	<script type="text/javascript">
+		function GetRequest() {
+			var url = location.search; //获取url中"?"符后的字串
+			var theRequest = new Object();
+			if (url.indexOf("?") != -1) {
+				var str = url.substr(1);
+				strs = str.split("&");
+				for (var i = 0; i < strs.length; i++) {
+					theRequest[strs[i].split("=")[0]] = decodeURIComponent(strs[i].split("=")[1]);
+				}
+			}
+			return theRequest;
+		}
+	</script>
+	<script type="text/javascript">
+		var polyline;
+		function showTrace(node) {
+			$
+				.ajax({
+					url : "http://115.159.122.41:8080/easybike/restful/trip/getTrace",
+					type : "post",
+					dataType : "json",
+					data : {
+						"tripid" : node.attr("data")
+					},
+					success : function(result) {
+						var r = result;
+						var obj = r.obj;
+						var retcode = r.retcode;
+						var errorMsg = r.errorMsg;
+						if (retcode == "0001") {
+							alert(errorMsg);
+						} else {
+							var arr = new Array();
+							map.clearOverlays();
+							$
+								.each(
+									obj,
+									function(
+										index,
+										item) {
+										arr[index] = new BMap.Point(
+											item.longitude,
+											item.latitude);
+										console.log(obj.length);
+										if (index == obj.length-1) {
+											polyline = new BMap.Polyline(arr, {
+												strokeColor : "blue",
+												strokeWeight : 1,
+												strokeOpacity : 0.5
+											});
+											map.addOverlay(polyline);
+											map.setCenter(arr[0]);
+										}
+									})
+							setChart(node);
+						}
+					}
+				});
+		}
+	</script>
+
+	<script type="text/javascript">
+		// 基于准备好的dom，初始化echarts实例
+		var speed_chart = echarts.init(document.getElementById('speed-chart'));
+		var length_chart = echarts.init(document.getElementById('length-chart'));
+		var uphill_chart = echarts.init(document.getElementById('uphill-chart'));
+		var calories_chart = echarts.init(document.getElementById('calories-chart'));
+		// 指定图表的配置项和数据
+		option = {
+			tooltip : {
+				trigger : 'item',
+				formatter : function(params, ticket, callback) {
+					var res = params.seriesName;
+					res += '<br/>' + params.name + ' : ' + params.percent + '%';
+					return res;
+				}
+			},
+			grid : {
+				bottom : 30
+			},
+			series : [ {
+				name : '',
+				radius : [
+					'60%',
+					'80%'
+				],
+				type : 'pie',
+				labelLine : {
+					normal : {
+						show : false
+					}
+				},
+				data : [ {
+					value : 70.0,
+					name : '',
+					label : {
+						normal : {
+							formatter : '0',
+							position : 'center',
+							show : true,
+							textStyle : {
+								fontSize : '16',
+								fontWeight : 'bold',
+								color : '#000'
+							}
+						}
+					}
+				}, {
+					value : 30,
+					name : '',
+					tooltip : {
+						show : false
+					},
+					itemStyle : {
+						normal : {
+							color : '#aaa'
+						},
+						emphasis : {
+							color : '#aaa'
+						}
+					},
+					hoverAnimation : false
+				} ]
+			} ]
+		};
+	
+		// 使用刚指定的配置项和数据显示图表。
+		speed_chart.setOption(option);
+		length_chart.setOption(option);
+		uphill_chart.setOption(option);
+		calories_chart.setOption(option);
+	</script>
+
+	<script type="text/javascript">
+		function setChart(node) {
+			speed_chart.setOption({
+				tooltip : {
+					trigger : 'item',
+					formatter : function(params, ticket, callback) {
+						var res = '平均速度';
+						res += '<br/> 速度: ' + node.parent().prev().prev().prev().prev().prev().text() + '  km/h';
+						return res;
+					}
+				},
+				series : [ {
+					name : '平均速度',
+					radius : [
+						'60%',
+						'80%'
+					],
+					type : 'pie',
+					labelLine : {
+						normal : {
+							show : false
+						}
+					},
+					data : [ {
+						value : 70.0,
+						name : '速度',
+						label : {
+							normal : {
+								formatter : node.parent().prev().prev().prev().prev().prev().text(),
+								position : 'center',
+								show : true,
+								textStyle : {
+									fontSize : '16',
+									fontWeight : 'bold',
+									color : '#000'
+								}
+							}
+						}
+					}, {
+						value : 30,
+						name : '',
+						tooltip : {
+							show : false
+						},
+						itemStyle : {
+							normal : {
+								color : '#aaa'
+							},
+							emphasis : {
+								color : '#aaa'
+							}
+						},
+						hoverAnimation : false
+					} ]
+				} ]
+			});
+	
+			length_chart.setOption({
+				tooltip : {
+					trigger : 'item',
+					formatter : function(params, ticket, callback) {
+						var res = '总路程';
+						res += '<br/> 距离: ' + node.parent().prev().prev().prev().prev().text() + '  km';
+						return res;
+					}
+				},
+				series : [ {
+					name : '总路程',
+					radius : [
+						'60%',
+						'80%'
+					],
+					type : 'pie',
+					labelLine : {
+						normal : {
+							show : false
+						}
+					},
+					data : [ {
+						value : 70.0,
+						name : '骑行总路程',
+						label : {
+							normal : {
+								formatter : node.parent().prev().prev().prev().prev().text(),
+								position : 'center',
+								show : true,
+								textStyle : {
+									fontSize : '16',
+									fontWeight : 'bold',
+									color : '#000'
+								}
+							}
+						}
+					}, {
+						value : 30,
+						name : '',
+						tooltip : {
+							show : false
+						},
+						itemStyle : {
+							normal : {
+								color : '#aaa'
+							},
+							emphasis : {
+								color : '#aaa'
+							}
+						},
+						hoverAnimation : false
+					} ]
+				} ]
+			});
+	
+			uphill_chart.setOption({
+				tooltip : {
+					trigger : 'item',
+					formatter : function(params, ticket, callback) {
+						var res = '上坡次数';
+						res += '<br/> 上坡:  ' + node.parent().prev().prev().prev().text() + ' 次';
+						res += '<br/><br/>下坡次数';
+						res += '<br/> 下坡:  ' + node.parent().prev().prev().text() + ' 次';
+						return res;
+					}
+				},
+				series : [ {
+					name : '上坡/下坡',
+					radius : [
+						'60%',
+						'80%'
+					],
+					type : 'pie',
+					labelLine : {
+						normal : {
+							show : false
+						}
+					},
+					data : [ {
+						value : 70.0,
+						name : '上坡次数/下坡次数',
+						label : {
+							normal : {
+								formatter : node.parent().prev().prev().prev().text() + '/' + node.parent().prev().prev().text(),
+								position : 'center',
+								show : true,
+								textStyle : {
+									fontSize : '16',
+									fontWeight : 'bold',
+									color : '#000'
+								}
+							}
+						}
+					}, {
+						value : 30,
+						name : '',
+						tooltip : {
+							show : false
+						},
+						itemStyle : {
+							normal : {
+								color : '#aaa'
+							},
+							emphasis : {
+								color : '#aaa'
+							}
+						},
+						hoverAnimation : false
+					} ]
+				} ]
+			});
+	
+			calories_chart.setOption({
+				tooltip : {
+					trigger : 'item',
+					formatter : function(params, ticket, callback) {
+						var res = '消耗的卡路里';
+						res += '<br/> 卡路里: ' + node.parent().prev().text() + '  卡';
+						return res;
+					}
+				},
+				series : [ {
+					name : '卡路里',
+					radius : [
+						'60%',
+						'80%'
+					],
+					type : 'pie',
+					labelLine : {
+						normal : {
+							show : false
+						}
+					},
+					data : [ {
+						value : 70.0,
+						name : '消耗卡路里',
+						label : {
+							normal : {
+								formatter : node.parent().prev().text(),
+								position : 'center',
+								show : true,
+								textStyle : {
+									fontSize : '16',
+									fontWeight : 'bold',
+									color : '#000'
+								}
+							}
+						}
+					}, {
+						value : 30,
+						name : '',
+						tooltip : {
+							show : false
+						},
+						itemStyle : {
+							normal : {
+								color : '#aaa'
+							},
+							emphasis : {
+								color : '#aaa'
+							}
+						},
+						hoverAnimation : false
+					} ]
+				} ]
+			});
+			$("#calories_text").text(node.parent().prev().text()+"  卡");
+			$("#uphill_text").text(node.parent().prev().prev().prev().text()+"/"+node.parent().prev().prev().text()+"  次");
+			$("#speed_text").text(node.parent().prev().prev().prev().prev().prev().text()+"  km/h");
+			$("#length_text").text(node.parent().prev().prev().prev().prev().text()+"  km");
+		}
+	</script>
+	<script type="text/javascript">
+		function changeTime(timestamp) {
+			var newDate = new Date();
+			newDate.setTime(timestamp);
+			return newDate.toLocaleString();
+		}
+	</script>
+</body>
+</html>

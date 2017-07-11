@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>后台模板</title>
+<link rel="stylesheet" href="assets/css/amazeui.css" />
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="assets/css/core.css" />
+<link rel="stylesheet" href="assets/css/menu.css" />
+<link rel="stylesheet" href="assets/css/index.css" />
+<link rel="stylesheet" href="assets/css/admin.css" />
+<link rel="stylesheet" href="assets/css/page/typography.css" />
+<link rel="stylesheet" href="assets/css/page/form.css" />
+<link rel="stylesheet" href="assets/css/jquery.page.css" />
+
+
+<script type="text/javascript">
+	function loadData(num) {
+		layer.alert(num);
+		console.log(num);
+	}
+</script>
+</head>
+<body>
+	<!-- Begin page -->
+	<header class="am-topbar am-topbar-fixed-top">
+		<div class="am-topbar-left am-hide-sm-only">
+			<a href="index.html" class="logo"><span>Easy<span>Bike</span>
+			</span><i class="zmdi zmdi-layers"></i> </a>
+		</div>
+
+		<div class="contain">
+			<ul class="am-nav am-navbar-nav am-navbar-left">
+
+				<li><h4 class="page-title">用户管理</h4></li>
+			</ul>
+
+			<ul class="am-nav am-navbar-nav am-navbar-right">
+				<li class="inform"><i class="am-icon-bell-o" aria-hidden="true"></i>
+				</li>
+				<li class="hidden-xs am-hide-sm-only">
+					<form role="search" class="app-search">
+						<input type="text" placeholder="Search..." class="form-control">
+						<a href=""><img src="assets/img/search.png"> </a>
+					</form>
+				</li>
+			</ul>
+		</div>
+	</header>
+	<!-- end page -->
+
+
+
+	<div class="admin">
+		<!--<div class="am-g">-->
+		<!-- ========== Left Sidebar Start ========== -->
+		<!--<div class="left side-menu am-hide-sm-only am-u-md-1 am-padding-0">
+			<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 548px;">
+				<div class="sidebar-inner slimscrollleft" style="overflow: hidden; width: auto; height: 548px;">-->
+		<!-- sidebar start -->
+		<div class="admin-sidebar am-offcanvas  am-padding-0"
+			id="admin-offcanvas" style="overflow-y: hidden;">
+			<div class="am-offcanvas-bar admin-offcanvas-bar">
+				<!-- User -->
+				<div class="user-box am-hide-sm-only">
+					<div class="user-img">
+						<img src="assets/img/avatar-1.jpg" alt="user-img"
+							title="Mat Helme" class="img-circle img-thumbnail img-responsive">
+						<div class="user-status offline">
+							<i class="am-icon-dot-circle-o" aria-hidden="true"></i>
+						</div>
+					</div>
+					<h5>
+						<a href="#">管理员</a>
+					</h5>
+					<ul class="list-inline">
+						<li><a href="#"> <i class="fa fa-cog" aria-hidden="true"></i>
+						</a></li>
+
+						<li><a href="#" class="text-custom"> <i class="fa fa-cog"
+								aria-hidden="true"></i>
+						</a></li>
+					</ul>
+				</div>
+				<!-- End User -->
+				<ul class="am-list admin-sidebar-list">
+					<li><a href="index.html"><span class="am-icon-home"></span>
+							首页</a></li>
+					<li class="admin-parent"><a class="am-cf"
+						data-am-collapse="{target: '#collapse-nav1'}"><span
+							class="am-icon-line-chart"></span> 单车管理 <span
+							class="am-icon-angle-right am-fr am-margin-right"></span> </a>
+						<ul class="am-list am-collapse admin-sidebar-sub am-in"
+							id="collapse-nav1">
+							<li><a href="BikeManage.html" class="am-cf"> 单车位置 </a></li>
+							<li><a href="TraceManage.html">投放推荐</a></li>
+						</ul></li>
+					<li class="admin-parent"><a class="am-cf"
+						data-am-collapse="{target: '#collapse-nav2'}"><span
+							class="am-icon-line-chart"></span> 用户管理 <span
+							class="am-icon-angle-right am-fr am-margin-right"></span> </a>
+						<ul class="am-list am-collapse admin-sidebar-sub am-in"
+							id="collapse-nav2">
+							<li><a href="UserStatistics.html" class="am-cf"> 统计信息 </a></li>
+							<li><a href="UserManage.html">用户列表</a></li>
+						</ul></li>
+					<li><a href="RepairManage.html"><span class="am-icon-file"></span>
+							维修管理</a></li>
+					<li><a href="mobikeAnalysis.html"><span
+							class="am-icon-file"></span> 摩拜单车移动轨迹</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- sidebar end -->
+
+		<!--</div>
+			</div>
+		</div>-->
+		<!-- ========== Left Sidebar end ========== -->
+
+
+
+		<!--	<div class="am-g">-->
+		<!-- ============================================================== -->
+		<!-- Start right Content here -->
+		<div class="content-page">
+			<!-- Start content -->
+			<div class="content">
+				<div class="am-u-md-12">
+					<div class="card-box">
+						<h3>&nbsp;&nbsp;&nbsp;&nbsp;用户列表</h3>
+						<!-- Row start -->
+						<!--分页 开始！！！！ -->
+						<div class="am-u-sm-12 am-u-md-3">
+							<div class="am-input-group am-input-group-sm">
+								<input type="text" class="am-form-field" id="pages"> <span
+									class="am-input-group-btn">
+									<button class="am-btn am-btn-default" type="button"
+										onclick="getUserByPage();">跳转到</button>
+								</span>
+							</div>
+						</div>
+						<!--分页 jieshu！！！！ -->
+						<div class="am-g">
+							<div class="am-u-sm-12">
+								<form class="am-form">
+									<table
+										class="am-table am-table-striped am-table-hover table-main">
+										<thead>
+											<tr>
+												<th class="table-id">ID</th>
+												<th class="table-title">姓名</th>
+												<th class="table-type">性别</th>
+												<th class="table-date am-hide-sm-only">手机号</th>
+												<th class="table-set">操作</th>
+											</tr>
+										</thead>
+										<tbody id="usertbody">
+
+										</tbody>
+									</table>
+
+									<hr />
+									<p>注：.....</p>
+								</form>
+							</div>
+
+						</div>
+						<!-- Row end -->
+					</div>
+
+				</div>
+
+				<div class="am-u-md-12">
+					<div class="card-box">
+						<h3>&nbsp;&nbsp;&nbsp;&nbsp;黑名单</h3>
+						<div class="am-u-sm-12 am-u-md-3">
+							<div class="am-input-group am-input-group-sm">
+								<input type="text" class="am-form-field" id="pages2"> <span
+									class="am-input-group-btn">
+									<button class="am-btn am-btn-default" type="button"
+										onclick="initBlackList();">跳转到</button>
+								</span>
+							</div>
+						</div>
+						<!-- Row start -->
+
+						<div class="am-g">
+							<div class="am-u-sm-12">
+								<form class="am-form">
+									<table
+										class="am-table am-table-striped am-table-hover table-main">
+										<thead>
+											<tr>
+												<th class="table-id">ID</th>
+												<th class="table-title">姓名</th>
+												<th class="table-type">性别</th>
+												<th class="table-date am-hide-sm-only">手机号</th>
+												<th class="table-set">操作</th>
+											</tr>
+										</thead>
+										<tbody id="blacktbody">
+
+										</tbody>
+									</table>
+
+									<hr />
+									<p>注：.....</p>
+								</form>
+							</div>
+
+						</div>
+						<!-- Row end -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end right Content here -->
+
+	<!-- navbar -->
+	<a href="admin-offcanvas"
+		class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu"
+		data-am-offcanvas="{target: '#admin-offcanvas'}"> <!--<i class="fa fa-bars" aria-hidden="true"></i>-->
+	</a>
+
+	<script type="text/javascript" src="assets/js/jquery-2.1.0.js"></script>
+	<script type="text/javascript" src="assets/js/amazeui.min.js"></script>
+	<script type="text/javascript" src="assets/js/app.js"></script>
+	<script type="text/javascript" src="assets/js/blockUI.js"></script>
+	<script src="https://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+	<script type="text/javascript" src="assets/js/charts/echarts.min.js"></script>
+	<script type="text/javascript" src="assets/js/layer.js"></script>
+	<script type="text/javascript">
+	var loadingmask;
+		$(window).on('load', function() {
+      loadingmask = layer.load(0);
+			$("#pages").val(1);
+			$("#pages2").val(1);
+			getUserByPage();
+			initBlackList();
+		});
+	</script>
+
+	<script type="text/javascript">
+		function getUserByPage() {
+			var pages = $("#pages").val();
+			var re = /^[0-9]+.?[0-9]*$/; //判断字符串是否为数字 //判断正整数 /^[1-9]+[0-9]*]*$/ 	
+			if (!re.test(pages)) {
+				layer.alert("请输入数字");
+				return false;
+			}
+			$
+				.ajax({
+					url : "http://localhost:8080/easybike/restful/user/getUserByPage",
+					type : "post",
+					dataType : "json",
+					data : {
+						"PNO" : pages,
+						"PSIZE" : "5"
+					},
+					success : function(result) {
+						var r = result;
+						var obj = r.obj;
+						var retcode = r.retcode;
+						var errorMsg = r.errorMsg;
+						console.log(retcode);
+						if (retcode != "0000") {
+						layer.alert(errorMsg);
+							return;
+						}
+						$("#usertbody").empty(); 
+						$.each(obj, function(index, item) {
+							var shtml = "<tr><td>" + item.userId + "</td>"
+								+ "<td>" + item.name + "</td>"
+								+ "<td>" + item.gender + "</td>"
+								+ "<td class='am-hide-sm-only'>" + item.phone + "</td>"
+								+ "<td><img src='assets/img/edituser.png' height = '20' width = '20' alt='修改资料' title='修改资料' data='" + item.userId + "' onclick='editUser($(this));'/>"
+								+ "&nbsp;&nbsp;<img src='assets/img/deleteuser.png' height = '20' width = '20' alt='加入黑名单' title='加入黑名单' data='" + item.userId + "' onclick='deleteUser($(this));'/>"
+								+ "&nbsp;&nbsp;<img src='assets/img/usertrace.png' height = '20' width = '20' alt='查看用户轨迹' title='查看用户轨迹' data='" + item.userId + "' onclick='usertrace($(this));'/>"
+								+ "&nbsp;&nbsp;<img src='assets/img/useranalyse.png' height = '20' width = '20' alt='单用户分析' title='单用户分析' data='" + item.userId + "' onclick='gotouserana($(this));'/></td></tr>";
+							$("#usertbody").append(shtml);
+						});
+						layer.close(loadingmask);
+						
+					}
+				});
+		}
+	</script>
+	<script type="text/javascript">
+		function initBlackList() {
+			var pages = $("#pages2").val();
+			var re = /^[0-9]+.?[0-9]*$/; //判断字符串是否为数字 //判断正整数 /^[1-9]+[0-9]*]*$/ 	
+			if (!re.test(pages)) {
+				layer.alert("请输入数字");
+				return false;
+			}
+			$
+				.ajax({
+					url : "http://localhost:8080/easybike/restful/user/getBlackList",
+					type : "post",
+					dataType : "json",
+					data : {
+						"PNO" : pages,
+						"PSIZE" : "5"
+					},
+					success : function(result) {
+						var r = result;
+						var obj = r.obj;
+						var retcode = r.retcode;
+						var errorMsg = r.errorMsg;
+						if (obj == null) {
+							return;
+						}
+						$("#blacktbody").empty(); 
+						$.each(obj, function(index, item) {
+							var shtml = "<tr><td>" + item.userId + "</td>"
+								+ "<td>" + item.name + "</td>"
+								+ "<td>" + item.gender + "</td>"
+								+ "<td class='am-hide-sm-only'>" + item.phone + "</td>"
+								+ "<td><img src='assets/img/edituser.png' height = '20' width = '20' alt='修改资料' title='修改资料' data='" + item.userId + "' onclick='editUser($(this));'/>"
+								+ "&nbsp;&nbsp;<img src='assets/img/revert.png' height = '20' width = '20' alt='恢复用户' title='恢复用户' data='" + item.userId + "' onclick='userBack($(this));'/>"
+								+ "&nbsp;&nbsp;<img src='assets/img/usertrace.png' height = '20' width = '20' alt='查看用户轨迹' title='查看用户轨迹' data='" + item.userId + "' onclick='usertrace($(this));'/></td></tr>";
+							$("#blacktbody").append(shtml);
+						});
+	
+					}
+				});
+		}
+	</script>
+	<script type="text/javascript">
+		function usertrace(node) {
+			location.href = "showTraces.html?userid=" + node.attr("data"); //location.href实现客户端页面的跳转  
+		}
+	
+		function gotouserana(node) {
+			location.href = "UserAnalyse.html?userid=" + node.attr("data"); //location.href实现客户端页面的跳转  
+		}
+	</script>
+	<script type="text/javascript">
+		function userBack(node) {
+			$
+				.ajax({
+					url : "http://localhost:8080/easybike/restful/user/userBack",
+					type : "post",
+					dataType : "json",
+					data : {
+						"userid" : node.attr("data")
+					},
+					success : function(result) {
+						var r = result;
+						var obj = r.obj;
+						var retcode = r.retcode;
+						var errorMsg = r.errorMsg;
+						if (retcode != "0000") {
+							layer.alert(errorMsg);
+						} else {
+							window.location.reload(); //刷新当前页面.
+						}
+	
+					}
+				});
+		}
+	</script>
+	<script type="text/javascript">
+		function deleteUser(node) {
+			$
+				.ajax({
+					url : "http://localhost:8080/easybike/restful/user/deleteUser",
+					type : "post",
+					dataType : "json",
+					data : {
+						"userid" : node.attr("data")
+					},
+					success : function(result) {
+						var r = result;
+						var obj = r.obj;
+						var retcode = r.retcode;
+						var errorMsg = r.errorMsg;
+						if (retcode != "0000") {
+							layer.alert(errorMsg);
+						} else {
+							window.location.reload(); //刷新当前页面.
+						}
+	
+					}
+				});
+		}
+	</script>
+	<script type="text/javascript">
+		function editUser(node) {
+			layer.open({
+				title : '修改资料',
+				content : "<div class='am-form-group'><div class='am-g'><label class='am-u-md-2 am-md-text-right am-padding-left-0' for='name'>用户名</label>"
+					+ "<input class='am-u-md-10 form-control'  placeholder='姓名' id = 'name'></div></div>"
+					+ "<div class='am-form-group'><div class='am-g'><label class='am-u-md-2 am-md-text-right' for='doc-select-1'>性别</label>"
+					+ "<select id='doc-select-1'><option value='男'>男</option><option value='女'>女</option></select> <span class='am-form-caret'></span></div></div>"
+					+ "<div class='am-form-group'><div class='am-g'><label class='am-u-md-2 am-md-text-right am-padding-left-0' for='phone'>手机号</label>"
+					+ "<input class='am-u-md-10 form-control'  placeholder='手机号' id = 'phone'></div></div>",
+				area : '500px',
+				success : function(layero, index) {
+					$("#name").val(node.parent().prev().prev().prev().text());
+					$("#doc-select-1").val(node.parent().prev().prev().text());
+					$("#phone").val(node.parent().prev().text());
+				},
+				yes : function(index, layero) {
+					var i = layer.load(3);
+					$
+						.ajax({
+							url : "http://localhost:8080/easybike/restful/user/editUser",
+							type : "post",
+							dataType : "json",
+							data : {
+								"userid" : node.attr("data"),
+								"gender" : $("#doc-select-1").find("option:selected").text(),
+								"name" : $("#name").val(),
+								"phone" : $("#phone").val()
+							},
+							success : function(result) {
+								var r = result;
+								var obj = r.obj;
+								var retcode = r.retcode;
+								var errorMsg = r.errorMsg;
+								if (retcode != "0000") {
+									layer.alert(errorMsg);
+									layer.close(i);
+								} else {
+	
+									layer.alert("修改成功");
+									layer.close(i);
+									window.location.reload(); //刷新当前页面.
+								}
+	
+							}
+						});
+				}
+			});
+		}
+	</script>
+
+</body>
+
+</html>

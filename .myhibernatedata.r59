@@ -1,0 +1,24 @@
+#MyEclipse Hibernate Properties
+#Sat Jun 10 14:09:47 CST 2017
+sessionFactoryName=com.project.daos.HibernateSessionFactory
+genBasicCompId=true
+profile=
+daoSFId=
+version=3.1
+jndiPath=
+detectM2M=true
+reStrategyClass=
+detectO2O=true
+springDaoFile=
+useJavaTypes=true
+keyGenerator=identity
+libInstallFolder=
+addLibs2Project=false
+genVersionTag=true
+sessionFactoryId=
+basePersistenceClass=
+genAnnotations=false
+reSettingsFile=/perfectBudget/src/resources/hibernate/hibernate.reveng.xml
+configFile=/postrade/src/hibernate.cfg.xml
+createConfigFile=true
+addLibs2Classpath=false

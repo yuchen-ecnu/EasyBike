@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>后台模板</title>
+<link rel="stylesheet" href="assets/css/amazeui.css" />
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="assets/css/core.css" />
+<link rel="stylesheet" href="assets/css/menu.css" />
+<link rel="stylesheet" href="assets/css/index.css" />
+<link rel="stylesheet" href="assets/css/admin.css" />
+<link rel="stylesheet" href="assets/css/page/typography.css" />
+<link rel="stylesheet" href="assets/css/page/form.css" />
+<link rel="stylesheet" href="assets/css/jquery.page.css" />
+
+
+<script type="text/javascript">
+	function loadData(num) {
+		layer.alert(num);
+		console.log(num);
+	}
+</script>
+</head>
+<body>
+	<!-- Begin page -->
+	<header class="am-topbar am-topbar-fixed-top">
+		<div class="am-topbar-left am-hide-sm-only">
+			<a href="index.html" class="logo"><span>Easy<span>Bike</span>
+			</span><i class="zmdi zmdi-layers"></i> </a>
+		</div>
+
+		<div class="contain">
+			<ul class="am-nav am-navbar-nav am-navbar-left">
+
+				<li><h4 class="page-title">mobike使用统计</h4></li>
+			</ul>
+
+			<ul class="am-nav am-navbar-nav am-navbar-right">
+				<li class="inform"><i class="am-icon-bell-o" aria-hidden="true"></i>
+				</li>
+				<li class="hidden-xs am-hide-sm-only">
+					<form role="search" class="app-search">
+						<input type="text" placeholder="Search..." class="form-control">
+						<a href=""><img src="assets/img/search.png"> </a>
+					</form>
+				</li>
+			</ul>
+		</div>
+	</header>
+	<!-- end page -->
+
+
+
+	<div class="admin">
+		<!--<div class="am-g">-->
+		<!-- ========== Left Sidebar Start ========== -->
+		<!--<div class="left side-menu am-hide-sm-only am-u-md-1 am-padding-0">
+			<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 548px;">
+				<div class="sidebar-inner slimscrollleft" style="overflow: hidden; width: auto; height: 548px;">-->
+		<!-- sidebar start -->
+		<div class="admin-sidebar am-offcanvas  am-padding-0"
+			id="admin-offcanvas" style="overflow-y: hidden;">
+			<div class="am-offcanvas-bar admin-offcanvas-bar">
+				<!-- User -->
+				<div class="user-box am-hide-sm-only">
+					<div class="user-img">
+						<img src="assets/img/avatar-1.jpg" alt="user-img"
+							title="Mat Helme" class="img-circle img-thumbnail img-responsive">
+						<div class="user-status offline">
+							<i class="am-icon-dot-circle-o" aria-hidden="true"></i>
+						</div>
+					</div>
+					<h5>
+						<a href="#">管理员</a>
+					</h5>
+					<ul class="list-inline">
+						<li><a href="#"> <i class="fa fa-cog" aria-hidden="true"></i>
+						</a></li>
+
+						<li><a href="#" class="text-custom"> <i class="fa fa-cog"
+								aria-hidden="true"></i>
+						</a></li>
+					</ul>
+				</div>
+				<!-- End User -->
+
+				<ul class="am-list admin-sidebar-list">
+					<li><a href="index.html"><span class="am-icon-home"></span>
+							首页</a></li>
+					<li class="admin-parent"><a class="am-cf"
+						data-am-collapse="{target: '#collapse-nav1'}"><span
+							class="am-icon-line-chart"></span> 单车管理 <span
+							class="am-icon-angle-right am-fr am-margin-right"></span> </a>
+						<ul class="am-list am-collapse admin-sidebar-sub am-in"
+							id="collapse-nav1">
+							<li><a href="BikeManage.html" class="am-cf"> 单车位置 </a></li>
+							<li><a href="TraceManage.html">投放推荐</a></li>
+						</ul></li>
+					<li class="admin-parent"><a class="am-cf"
+						data-am-collapse="{target: '#collapse-nav2'}"><span
+							class="am-icon-line-chart"></span> 用户管理 <span
+							class="am-icon-angle-right am-fr am-margin-right"></span> </a>
+						<ul class="am-list am-collapse admin-sidebar-sub am-in"
+							id="collapse-nav2">
+							<li><a href="UserStatistics.html" class="am-cf"> 统计信息 </a></li>
+							<li><a href="UserManage.html">用户列表</a></li>
+						</ul></li>
+					<li><a href="RepairManage.html"><span class="am-icon-file"></span>
+							维修管理</a></li>
+					<li><a href="mobikeAnalysis.html"><span
+							class="am-icon-file"></span> 摩拜单车移动轨迹</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- sidebar end -->
+
+		<!--</div>
+			</div>
+		</div>-->
+		<!-- ========== Left Sidebar end ========== -->
+
+
+
+		<!--	<div class="am-g">-->
+		<!-- ============================================================== -->
+		<!-- Start right Content here -->
+		<div class="content-page">
+			<!-- Start content -->
+			<div class="content">
+				<div class="card-box"> 
+				  <div class="am-g">
+					<!-- Row start -->
+								
+					<div class="am-u-md-12">
+						<div id="container" style="width:100%; height:500px"></div>
+							<div id="panel"></div>
+							</div>
+					</div>
+					<!-- Row end -->
+				</div>
+				<div class="am-u-md-12">
+					<div class="card-box">
+						<h3>&nbsp;&nbsp;&nbsp;&nbsp;单车骑行次数</h3>
+						<hr />
+						<div id="userupdatechart" style="width: 100%;height:400px;"></div>
+						<hr />
+						<p id="time3"></p>
+					</div>
+				</div>
+				<div class="am-u-md-6">
+					<div class="card-box">
+						<h3>&nbsp;&nbsp;&nbsp;&nbsp;车型分布</h3>
+						<hr />
+						<div id="useactivechart" style="width: 600px;height:400px;"></div>
+						<hr />
+						<p id="time2"></p>
+					</div>
+				</div>
+				<div class="am-u-md-6">
+					<div class="card-box">
+						<h3>&nbsp;&nbsp;&nbsp;&nbsp;骑行次数比例分布</h3>
+						<hr />
+						<div id="usegenderchart" style="width: 600px;height:400px;"></div>
+						<hr />
+						<p id="time1"></p>
+					</div>
+				</div>
+				<div class="am-u-md-6">
+					<div class="card-box">
+						<h3>&nbsp;&nbsp;&nbsp;&nbsp;骑行距离比例</h3>
+						<hr />
+						<div id="ridedistance" style="width: 600px;height:400px;"></div>
+						<hr />
+						<p id="time1"></p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- end right Content here -->
+
+	<!-- navbar -->
+	<a href="admin-offcanvas"
+		class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu"
+		data-am-offcanvas="{target: '#admin-offcanvas'}"> <!--<i class="fa fa-bars" aria-hidden="true"></i>-->
+	</a>
+
+	<script type="text/javascript" src="assets/js/jquery-2.1.0.js"></script>
+	<script type="text/javascript" src="assets/js/amazeui.min.js"></script>
+	<script type="text/javascript" src="assets/js/app.js"></script>
+	<script type="text/javascript" src="assets/js/blockUI.js"></script>
+	<script src="https://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+	<script type="text/javascript" src="assets/js/charts/echarts.min.js"></script>
+	<script type="text/javascript" src="assets/js/layer.js"></script>
+    <script type="text/javascript" src="assets/js/gmaps-heatmap.js"></script>
+    <script type="text/javascript" src="assets/js/heatmap.js"></script>
+
+	<script type="text/javascript"
+		src="http://webapi.amap.com/maps?v=1.3&key=bef6d4f09241ab4cd125beaedf2ff028&plugin=AMap.AdvancedInfoWindow"></script>
+	<!--引入UI组件库（1.0版本） -->
+	<script src="//webapi.amap.com/ui/1.0/main.js"></script>
+	<script type="text/javascript">
+		var biketype = new Array();
+		var gmap;
+		function init() {
+		gmap = new AMap.Map('container', {
+				resizeEnable : true,
+				zoom : 16,
+				center : [ 121.403316, 31.229611 ]
+			});
+			gmap.plugin([ "AMap.ToolBar" ], function() {
+				gmap.addControl(new AMap.ToolBar());
+			});
+			}
+	
+		$(window).on('load', function() {
+			init();
+                    showHeatmap();
+                    mapClickListener();
+			initChartGender();
+			initChartActiveUser();
+			initChartUserUpdate();
+			initChartRideDistance();
+			getCurrentTime();
+		});
+	</script>
+
+	<script type="text/javascript">
+		function initChartGender() {
+			// 基于准备好的dom，初始化echarts实例
+			var myChart = echarts.init(document.getElementById('usegenderchart'));
+	
+			// 指定图表的配置项和数据
+			var option = {
+				title : {
+					text : '骑行次数比例分布',
+					x : 'center'
+				},
+				tooltip : {
+					trigger : 'item',
+					formatter : "{a} <br/>{b} : {c} ({d}%)"
+				},
+				legend : {
+					orient : 'vertical',
+					left : 'left',
+					data : [ '男', '女' ]
+				},
+				series : [
+					{
+						name : '骑行次数比例分布',
+						type : 'pie',
+						radius : '55%',
+						center : [ '50%', '60%' ],
+						data : [
+							{
+								value : 335,
+								name : '男'
+							},
+							{
+								value : 310,
+								name : '女'
+							}
+						],
+						itemStyle : {
+							emphasis : {
+								shadowBlur : 10,
+								shadowOffsetX : 0,
+								shadowColor : 'rgba(0, 0, 0, 0.5)'
+							}
+						}
+					}
+				]
+			};
+			// 使用刚指定的配置项和数据显示图表。
+			myChart.setOption(option);
+			//動態設置數據
+			myChart.showLoading();
+			getChartGenderData(myChart);
+		}
+	</script>
+
+	<script type="text/javascript">
+	
+		function initChartRideDistance() {
+			// 基于准备好的dom，初始化echarts实例
+			var myChart = echarts.init(document.getElementById('ridedistance'));
+	
+			// 指定图表的配置项和数据
+			var option = {
+				title : {
+					text : '骑行距离分布',
+					x : 'center'
+				},
+				tooltip : {
+					trigger : 'item',
+					formatter : "{a} <br/>{b} : {c} ({d}%)"
+				},
+				legend : {
+					orient : 'vertical',
+					left : 'left',
+					data : [ '男', '女' ]
+				},
+				series : [
+					{
+						name : '骑行距离分布',
+						type : 'pie',
+						radius : '55%',
+						center : [ '50%', '60%' ],
+						data : [
+							{
+								value : 335,
+								name : '男'
+							},
+							{
+								value : 310,
+								name : '女'
+							}
+						],
+						itemStyle : {
+							emphasis : {
+								shadowBlur : 10,
+								shadowOffsetX : 0,
+								shadowColor : 'rgba(0, 0, 0, 0.5)'
+							}
+						}
+					}
+				]
+			};
+			// 使用刚指定的配置项和数据显示图表。
+			myChart.setOption(option);
+			//動態設置數據
+			myChart.showLoading();
+			getChartRideDistanceData(myChart);
+		}
+	</script>
+
+	<script type="text/javascript">
+		function initChartActiveUser() {
+			// 基于准备好的dom，初始化echarts实例
+			var myChart = echarts.init(document.getElementById('useactivechart'));
+			var option = {
+				title : {
+					text : '车型分布',
+					x : 'center'
+				},
+				color : [ '#3398DB' ],
+				tooltip : {
+					trigger : 'axis',
+					axisPointer : { // 坐标轴指示器，坐标轴触发有效
+						type : 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+					}
+				},
+				grid : {
+					left : '3%',
+					right : '4%',
+					bottom : '3%',
+					containLabel : true
+				},
+				xAxis : [
+					{
+						type : 'category',
+						data : [ 'Mobike Lite', 'Mobike 标准车', 'Mobike 轻骑' ],
+						axisTick : {
+							alignWithLabel : true
+						}
+					}
+				],
+				yAxis : [
+					{
+						type : 'value'
+					}
+				],
+				series : [
+					{
+						name : '数量',
+						type : 'bar',
+						barWidth : '60%',
+						data : [ 10, 52, 200, 334, 390, 330, 220 ]
+					}
+				]
+			};
+	
+			// 使用刚指定的配置项和数据显示图表。
+			myChart.setOption(option);
+			//動態設置數據
+			myChart.showLoading();
+			getChartActiveUserData(myChart);
+		}
+	</script>
+
+	<script type="text/javascript">
+		function initChartUserUpdate() {
+			// 基于准备好的dom，初始化echarts实例
+			var myChart = echarts.init(document.getElementById('userupdatechart'));
+			var option = {
+				title : {
+					text : '单车骑行次数分布',
+					x : 'center'
+				},
+				color : [ '#3398DB' ],
+				tooltip : {
+					trigger : 'axis',
+					axisPointer : { // 坐标轴指示器，坐标轴触发有效
+						type : 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+					}
+				},
+				grid : {
+					left : '3%',
+					right : '4%',
+					bottom : '3%',
+					containLabel : true
+				},
+				xAxis : [
+					{
+						type : 'category',
+						data : [ '' ],
+						axisTick : {
+							alignWithLabel : true
+						}
+					}
+				],
+				yAxis : [
+					{
+						type : 'value'
+					}
+				],
+				series : [
+					{
+						name : '数量',
+						type : 'bar',
+						barWidth : '60%',
+						data : [ 10, 52, 200, 334, 390, 330, 220 ]
+					}
+				]
+			};
+	
+			// 使用刚指定的配置项和数据显示图表。
+			myChart.setOption(option);
+			//動態設置數據
+			myChart.showLoading();
+			getChartUserUpdateData(myChart);
+		}
+	</script>
+
+	<script type="text/javascript">
+	
+		function getChartRideDistanceData(myChart) {
+			$
+				.ajax({
+					url : "http://localhost:8080/easybike/restful/bike/getAllMobikeTrip",
+					type : "post",
+					dataType : "json",
+					success : function(result) {
+						var r = result;
+						var obj = r.obj;
+						var retcode = r.retcode;
+						var errorMsg = r.errorMsg;
+						if (retcode != "0000") {
+							alert(errorMsg);
+						} else {
+							var arrTime = new Array();
+							var arrNum = new Array();
+							$.each(obj, function(index, item) {
+								var distance = new AMap.LngLat(item.startlon, item.startlat).distance(item.endlon, item.endlat);
+								if (distance >= 100 && distance < 1000) {
+									arrTime[0]++;
+								} else if (distance >= 1000 && distance < 2000) {
+									arrTime[1]++;
+								} else if (distance >= 2000 && distance < 3000) {
+									arrTime[2]++;
+								} else if (distance >= 3000 && distance < 4000) {
+									arrTime[3]++;
+								} else if (distance >= 4000 && distance < 5000) {
+									arrTime[4]++;
+								} else if (distance >= 5000) {
+									arrTime[5]++;
+								}
+							//arrNum.push(item.mobikeType);
+							});
+							console.log(arrTime);
+							$.each(obj, function(index, item) {
+								arrNum.push(item.mobikeType);
+								arrTime.push({
+									name : item.mobikeType + "次",
+									value : parseInt(item.count)
+								});
+							});
+							//console.log(arrTime);
+							myChart.setOption({
+								legend : {
+									orient : 'vertical',
+									left : 'left',
+									data : arrNum
+								},
+								series : [ {
+									data : arrTime
+								} ]
+							});
+							myChart.hideLoading();
+						}
+					}
+				});
+		}
+	</script>
+
+	<script type="text/javascript">
+		function getChartGenderData(myChart) {
+			$
+				.ajax({
+					url : "http://localhost:8080/easybike/restful/bike/getMobikeRideTimes",
+					type : "post",
+					dataType : "json",
+					success : function(result) {
+						var r = result;
+						var obj = r.obj;
+						var retcode = r.retcode;
+						var errorMsg = r.errorMsg;
+						if (retcode != "0000") {
+							alert(errorMsg);
+						} else {
+							var arrTime = new Array();
+							var arrNum = new Array();
+							$.each(obj, function(index, item) {
+								arrNum.push(item.mobikeType);
+								arrTime.push({
+									name : item.mobikeType + "次",
+									value : parseInt(item.count)
+								});
+							});
+							//console.log(arrTime);
+							myChart.setOption({
+								legend : {
+									orient : 'vertical',
+									left : 'left',
+									data : arrNum
+								},
+								series : [ {
+									data : arrTime
+								} ]
+							});
+							myChart.hideLoading();
+						}
+					}
+				});
+		}
+	</script>
+
+	<script type="text/javascript">
+		function getChartActiveUserData(myChart) {
+			biketype[999] = "Mobike Lite";
+			biketype[2] = "Mobike 标准车";
+			biketype[1] = "Mobike 轻骑";
+			$
+				.ajax({
+					url : "http://localhost:8080/easybike/restful/bike/getMobikeTypeNumber",
+					type : "post",
+					dataType : "json",
+					success : function(result) {
+						var r = result;
+						var obj = r.obj;
+						var retcode = r.retcode;
+						var errorMsg = r.errorMsg;
+						if (retcode != "0000") {
+							alert(errorMsg);
+						} else {
+							var arrTime = new Array();
+							var arrNum = new Array();
+							$.each(obj, function(index, item) {
+								arrTime.unshift(biketype[item.mobikeType]);
+								arrNum.unshift(item.count);
+							});
+							myChart.setOption({
+								xAxis : [
+									{
+										type : 'category',
+										data : arrTime,
+										axisTick : {
+											alignWithLabel : true
+										}
+									}
+								],
+								series : [ {
+									data : arrNum
+								} ]
+							});
+							myChart.hideLoading();
+						}
+					}
+				});
+		}
+	</script>
+
+	<script type="text/javascript">
+		function getChartUserUpdateData(myChart) {
+			$
+				.ajax({
+					url : "http://localhost:8080/easybike/restful/bike/getMobikeRideTimes",
+					type : "post",
+					dataType : "json",
+					success : function(result) {
+						var r = result;
+						var obj = r.obj;
+						var retcode = r.retcode;
+						var errorMsg = r.errorMsg;
+						if (retcode != "0000") {
+							alert(errorMsg);
+						} else {
+							var arrTime = new Array();
+							var arrNum = new Array();
+							$.each(obj, function(index, item) {
+								arrTime.push(item.mobikeType);
+								arrNum.push(item.count);
+							});
+							myChart.setOption({
+								xAxis : {
+									data : arrTime
+								},
+								series : [
+									{
+										data : arrNum
+									}
+								]
+							});
+							myChart.hideLoading();
+						}
+					}
+				});
+		}
+	</script>
+<script type="text/javascript">
+function showHeatmap(){
+var loadingmask;
+   var heatmap;
+    gmap.plugin(["AMap.Heatmap"], function() {
+        //初始化heatmap对象
+        heatmap = new AMap.Heatmap(gmap, {
+            radius: 25, //给定半径
+            opacity: [0, 0.8]
+            /*,gradient:{
+             0.5: 'blue',
+             0.65: 'rgb(117,211,248)',
+             0.7: 'rgb(0, 255, 0)',
+             0.9: '#ffea00',
+             1.0: 'red'
+             }*/
+        });
+
+    });
+      loadingmask = layer.load(0);
+	    $
+					.ajax({
+							url : "http://localhost:8080/easybike/restful/trip/getEndPoints",
+							type : "post",
+							success : function(result) {
+								var r = $.parseJSON(result);
+								var obj = r.obj;
+								var retcode = r.retcode;
+								var errorMsg = r.errorMsg;
+								if (retcode == "0001") {
+									alert(errorMsg);
+								} else {
+								var heatmapData = new Array();
+								    $
+								       .each(
+								             obj,
+								             function(index,
+								               item){
+								                 var point = {
+												    lng: parseFloat(item.longitude),
+												    lat: parseFloat(item.latitude),
+												    count: 10
+												  };
+											heatmapData.push(point);
+									})
+									heatmap.setDataSet({
+											data: heatmapData,
+											max: 100
+									});
+									layer.close(loadingmask);
+														 }
+
+				}
+		});
+}		
+</script>
+<script type="text/javascript">
+function mapClickListener(){
+var placeSearch;
+			gmap.on('click', function(e) {
+			        AMap.service(["AMap.PlaceSearch"], function() {
+			        placeSearch = new AMap.PlaceSearch({ //构造地点查询类
+			            pageSize: 1,
+			            pageIndex: 1,
+			            city: "021", 
+			            map: gmap
+			        });			
+			        placeSearch.clear();
+			        var cpoint = [e.lnglat.getLng(), e.lnglat.getLat()]; //中心点坐标
+                    placeSearch.searchNearBy('', cpoint, 200, function(status, result) {
+			    });	
+        });
+      });	
+ }
+
+ </script>
+	<script type="text/javascript">
+		function getCurrentTime() {
+			var now = new Date();
+			$("#time1").text("統計時間：" + (parseInt(1900) + parseInt(now.getYear())) + "-" + now.getDate() + " " + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds());
+			$("#time2").text("統計時間：" + (parseInt(1900) + parseInt(now.getYear())) + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds());
+			$("#time3").text("統計時間：" + (parseInt(1900) + parseInt(now.getYear())) + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds());
+		}
+	</script>
+</body>
+
+</html>

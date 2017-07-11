@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>后台模板</title>
+<link rel="stylesheet" href="assets/css/amazeui.css" />
+<link rel="stylesheet" href="assets/css/core.css" />
+<link rel="stylesheet" href="assets/css/menu.css" />
+<link rel="stylesheet" href="assets/css/index.css" />
+<link rel="stylesheet" href="assets/css/admin.css" />
+<link rel="stylesheet" href="assets/css/page/typography.css" />
+<link rel="stylesheet" href="assets/css/page/form.css" />
+<link rel="stylesheet" href="assets/css/component.css" />
+<!--  引入高德地图api -->
+<script type="text/javascript"
+			src="http://webapi.amap.com/maps?v=1.3&key=bef6d4f09241ab4cd125beaedf2ff028&plugin=AMap.AdvancedInfoWindow"></script>
+</head>
+<body>
+	<!-- Begin page -->
+	<header class="am-topbar am-topbar-fixed-top">
+		<div class="am-topbar-left am-hide-sm-only">
+			<a href="index.html" class="logo"><span>Easy<span>Bike</span>
+			</span><i class="zmdi zmdi-layers"></i> </a>
+		</div>
+
+		<div class="contain">
+			<ul class="am-nav am-navbar-nav am-navbar-left">
+
+				<li><h4 class="page-title">单车管理</h4></li>
+			</ul>
+
+			<ul class="am-nav am-navbar-nav am-navbar-right">
+				<li class="inform"><i class="am-icon-bell-o" aria-hidden="true"></i>
+				</li>
+				<li class="hidden-xs am-hide-sm-only">
+					<form role="search" class="app-search">
+						<input type="text" placeholder="Search..." class="form-control">
+						<a href=""><img src="assets/img/search.png"> </a>
+					</form>
+				</li>
+			</ul>
+		</div>
+	</header>
+	<!-- end page -->
+
+
+	<div class="admin">
+		<!--<div class="am-g">-->
+		<!-- ========== Left Sidebar Start ========== -->
+		<!--<div class="left side-menu am-hide-sm-only am-u-md-1 am-padding-0">
+			<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 548px;">
+				<div class="sidebar-inner slimscrollleft" style="overflow: hidden; width: auto; height: 548px;">-->
+		<!-- sidebar start -->
+		<div class="admin-sidebar am-offcanvas  am-padding-0"
+			id="admin-offcanvas" style="overflow-y: hidden;">
+			<div class="am-offcanvas-bar admin-offcanvas-bar">
+				<!-- User -->
+				<div class="user-box am-hide-sm-only">
+					<div class="user-img">
+						<img src="assets/img/avatar-1.jpg" alt="user-img"
+							title="Mat Helme" class="img-circle img-thumbnail img-responsive">
+						<div class="user-status offline">
+							<i class="am-icon-dot-circle-o" aria-hidden="true"></i>
+						</div>
+					</div>
+					<h5>
+						<a href="#">管理员</a>
+					</h5>
+					<ul class="list-inline">
+						<li><a href="#"> <i class="fa fa-cog" aria-hidden="true"></i>
+						</a></li>
+
+						<li><a href="#" class="text-custom"> <i class="fa fa-cog"
+								aria-hidden="true"></i>
+						</a></li>
+					</ul>
+				</div>
+				<!-- End User -->
+
+
+								<ul class="am-list admin-sidebar-list">
+					<li><a href="index.html"><span class="am-icon-home"></span>
+							首页</a></li>
+					<li class="admin-parent"><a class="am-cf"
+						data-am-collapse="{target: '#collapse-nav1'}"><span
+							class="am-icon-line-chart"></span> 单车管理 <span
+							class="am-icon-angle-right am-fr am-margin-right"></span> </a>
+						<ul class="am-list am-collapse admin-sidebar-sub am-in"
+							id="collapse-nav1">
+							<li><a href="BikeManage.html" class="am-cf"> 单车位置
+							</a></li>
+							<li><a href="TraceManage.html">投放推荐</a></li>
+						</ul></li>
+					<li class="admin-parent"><a class="am-cf"
+						data-am-collapse="{target: '#collapse-nav2S'}"><span
+							class="am-icon-line-chart"></span> 用户管理 <span
+							class="am-icon-angle-right am-fr am-margin-right"></span> </a>
+						<ul class="am-list am-collapse admin-sidebar-sub am-in"
+							id="collapse-nav2">
+							<li><a href="UserStatistics.html" class="am-cf"> 统计信息
+							</a></li>
+							<li><a href="UserManage.html">用户列表</a></li>
+						</ul></li>
+					<li><a href="RepairManage.html"><span class="am-icon-file"></span>
+							维修管理</a></li>
+					<li><a href="mobikeAnalysis.html"><span class="am-icon-file"></span>
+					摩拜单车移动轨迹</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- sidebar end -->
+
+		<!--</div>
+			</div>
+		</div>-->
+		<!-- ========== Left Sidebar end ========== -->
+
+
+
+		<!--	<div class="am-g">-->
+		<!-- ============================================================== -->
+		<!-- Start right Content here -->
+		<div class="content-page">
+			<!-- Start content -->
+			<div class="content">
+
+				<div class="card-box">
+					<div class="am-g">
+						<!-- Row start -->
+						<div class="am-u-md-12">
+						<div id="container" style="width:100%; height:500px"></div>
+					</div>
+					</div>
+					<!-- Row end -->
+				</div>
+				<div class="card-box">
+					<!-- Row start -->
+					<div class="am-g">
+						<div class="am-u-md-12">
+							<div class="am-btn-toolbar">
+								<div class="am-btn-group am-btn-group-xs">
+									<button onclick="batchAddition()" type="button" class="am-btn am-btn-default">
+										<span class="am-icon-plus"></span> 批量增加
+									</button>
+									<button onclick="showAllBike()" type="button" class="am-btn am-btn-default">
+										<span class="am-icon-archive"></span> 全部显示
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<!--分页 开始！！！！ -->
+						<div class="am-u-sm-12 am-u-md-3">
+							<div class="am-input-group am-input-group-sm">
+								<input type="text" class="am-form-field" id="pages"> <span
+									class="am-input-group-btn">
+									<button class="am-btn am-btn-default" type="button"
+										onclick=" initialtable()">跳转到</button>
+								</span>
+							</div>
+						</div>
+						<!--分页 jieshu！！！！ -->
+					</div>
+					<!-- Row end -->
+
+					<!-- Row start -->
+					<div class="am-g">
+						<div class="am-u-sm-12">
+							<form class="am-form">
+								<table
+									class="am-table am-table-striped am-table-hover table-main">
+									<thead>
+										<tr>
+											<th class="table-id">ID</th>
+											<th class="table-title">纬度</th>
+											<th class="table-type">经度</th>
+											<th class="table-author am-hide-sm-only">状态</th>
+											<th class="table-date am-hide-sm-only">车型</th>
+											<th class="table-title">操作</th>
+										</tr>
+									</thead>
+									<tbody id="usertbody">
+
+									</tbody>
+								</table>
+								<div class="am-cf">
+									共 15 条记录
+									<div class="am-fr">
+										<ul class="am-pagination">
+											<li class="am-disabled"><a href="#">«</a></li>
+											<li class="am-active"><a href="#">1</a></li>
+											<li><a href="#">2</a></li>
+											<li><a href="#">3</a></li>
+											<li><a href="#">4</a></li>
+											<li><a href="#">5</a></li>
+											<li><a href="#">»</a></li>
+										</ul>
+									</div>
+								</div>
+								<hr />
+								<p>注：.....</p>
+							</form>
+						</div>
+
+					</div>
+					<!-- Row end -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end right Content here -->
+
+	<!-- navbar -->
+	<a href="admin-offcanvas"
+		class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu"
+		data-am-offcanvas="{target: '#admin-offcanvas'}"> <!--<i class="fa fa-bars" aria-hidden="true"></i>-->
+	</a>
+
+	<script type="text/javascript" src="assets/js/jquery-2.1.0.js"></script>
+	<script type="text/javascript" src="assets/js/amazeui.min.js"></script>
+	<script type="text/javascript" src="assets/js/app.js"></script>
+	<script type="text/javascript" src="assets/js/blockUI.js"></script>
+	<script type="text/javascript" src="assets/js/charts/echarts.min.js"></script>
+	<script type="text/javascript" src="assets/js/charts/indexChart.js"></script>
+	<script type="text/javascript" src="assets/js/layer.js"></script>
+	<!--引入UI组件库（1.0版本） -->
+		<script src="//webapi.amap.com/ui/1.0/main.js"></script>
+	
+	<script type="text/javascript">
+		var gmap;
+		var biketype = new Array();
+		var loadingmask;
+		
+		function init() {
+			gmap = new AMap.Map('container', {
+				resizeEnable : true,
+				zoom : 16,
+				center : [ 121.403316, 31.229611 ]
+			});
+			gmap.plugin([ "AMap.ToolBar" ], function() {
+				gmap.addControl(new AMap.ToolBar());
+			});
+		}
+	
+		$(window)
+			.on(
+				'load',
+				function() {
+				    loadingmask = layer.load(0);
+				      $("#pages").val(1);
+					init();
+					initialtable();
+					$
+						.ajax({
+							url : "http://localhost:8080/easybike/restful/bike/getAllBike",
+							type : "post",
+							success : function(result) {
+								var r = $.parseJSON(result);
+								var obj = r.obj;
+								var retcode = r.retcode;
+								var errorMsg = r.errorMsg;
+								if (retcode == "0001") {
+									alert(errorMsg);
+								} else {
+								var arr = new Array();
+		
+								biketype[999] = "Mobike Lite";
+								biketype[2] = "Mobike 标准车";
+								biketype[1] = "Mobike 轻骑";
+									$
+										.each(
+											obj,
+											function(index,
+												item) { 
+												
+												//啊啊啊啊啊啊啊啊啊啊啊海量点展示
+												arr.push({
+												position:[item.longitude,item.latitude],
+												bikeid:item.bikeId
+												//biketype : biketype[item.biketype]
+											});
+											//if (index < 50) initialtable(item);
+										})
+								
+								//海量点展示
+								AMapUI.load([ 'ui/misc/PointSimplifier', 'lib/$' ], function(PointSimplifier, $) {
+		
+									if (!PointSimplifier.supportCanvas) {
+										alert('当前环境不支持 Canvas！');
+										return;
+									}
+		
+									var pointSimplifierIns = new PointSimplifier({
+										map : gmap, //所属的地图实例
+		
+										getPosition : function(dataitem) {
+											if (!dataitem) {
+												return null;
+											}
+		
+											//返回经纬度
+											return dataitem.position;
+										},
+										getHoverTitle : function(dataItem, idx) {
+											return "车牌号：" + dataItem.bikeid + "<br/>"
+												//+ "车型：" + dataItem.biketype + "<br/>"
+												//+ "骑行次数：" + dataItem.tripcount + "<br/>"
+												+ "纬度：" + dataItem.position[1] + "<br/>"
+												+ "经度：" + dataItem.position[0] + "<br/>"
+												//+ "采集时间：" + dataItem.time;
+										},
+										renderOptions : {
+											//点的样式
+											pointStyle : {
+												width : 6,
+												height : 6
+											},
+											//鼠标hover时的title信息
+											hoverTitleStyle : {
+												position : 'top'
+											}
+										}
+									});
+									pointSimplifierIns.setData(arr);
+									pointSimplifierIns.on('pointClick', function(e, record) {
+									});
+									layer.close(loadingmask);
+												//啊啊啊啊啊啊啊啊啊啊海量点展示
+			
+                                                });
+								}
+	
+							}
+						});
+				});
+</script>
+<script type="text/javascript">
+		function batchAddition(node) {
+			layer.open({
+				title : '批量添加信息',
+				content : "<div class='am-form-group'><div class='am-g'><label class='am-u-md-2 am-md-text-right am-padding-left-0' for='bikeid'>起始编号</label>"
+					+ "<input class='am-u-md-10 form-control'  placeholder='起始编号' id = 'bikeid'></div></div>"
+				    +"<div class='am-form-group'><div class='am-g'><label class='am-u-md-2 am-md-text-right am-padding-left-0' for='latitude'>纬度</label>"
+					+ "<input class='am-u-md-10 form-control'  placeholder='纬度' id = 'latitude'></div></div>"
+					+ "<div class='am-form-group'><div class='am-g'><label class='am-u-md-2 am-md-text-right am-padding-left-0' for='longitude'>经度</label>"
+					+ "<input class='am-u-md-10 form-control'  placeholder='经度' id = 'longitude'></div></div>"
+                    + "<div class='am-form-group'><div class='am-g'><label class='am-u-md-2 am-md-text-right am-padding-left-0' for='amount'>数量</label>"
+					+ "<input class='am-u-md-10 form-control'  placeholder='数量' id = 'amount'></div></div>"
+					+ "<div class='am-form-group'><div class='am-g'><label class='am-u-md-2 am-md-text-right am-padding-left-0' for='type'>车型</label>"
+					+ "<input class='am-u-md-10 form-control'  placeholder='车型' id = 'type'></div></div>",
+				area : '500px',
+				yes : function(index) {
+					var i = layer.load(1);
+					$
+						.ajax({
+							url : "http://localhost:8080/easybike/restful/bike/batchAddition",
+							type : "post",
+							dataType : "json",
+							data : {
+							    "bikeid" : $("#bikeid").val(),
+								"latitude" : $("#latitude").val(),
+								"longitude" : $("#longitude").val(),
+								"amount" : $("#amount").val(),
+								"type" : $("#type").val()
+							},
+							success : function(result) {
+								var r = result;
+								var obj = r.obj;
+								var retcode = r.retcode;
+								var errorMsg = r.errorMsg;
+								if (retcode != "0000") {
+									layer.alert(errorMsg);
+									layer.close(i);
+								} else {
+									layer.alert("批量添加成功");
+									layer.close(i);
+									window.location.reload(); //刷新当前页面.
+								}
+	
+							}
+						});
+				}
+			});
+		}
+	</script>
+<script type="text/javascript">
+/*function showAllBike(){
+	    $
+						.ajax({
+							url : "http://localhost:8080/easybike/restful/bike/getAllBike",
+							type : "post",
+							success : function(result) {
+								var r = $.parseJSON(result);
+								var obj = r.obj;
+								var retcode = r.retcode;
+								var errorMsg = r.errorMsg;
+								if (retcode == "0001") {
+									alert(errorMsg);
+								} else {
+								    $
+								       .each(
+								             obj,
+								             function(index,
+								               item){
+                                             var myIcon = new BMap.Icon("http://115.159.122.41:8080/easybike/assets/img/bike_marker.png",
+													new BMap.Size(50, 50));
+												var pt = new BMap.Point(item.longitude,
+													item.latitude);
+												var marker2 = new BMap.Marker(pt, {
+													icon : myIcon
+												}); // 创建标注
+												map.addOverlay(marker2); // 将标注添加到地图中
+											
+                                                var opts = {    
+                                                  width : 100,     // 信息窗口宽度    
+											      height: 100,     // 信息窗口高度    
+												  title : "BikeInfo"  // 信息窗口标题   
+                                                 }    
+                                                 var content="ID："+item.bike_id+"\n"
+                                                             +"纬度："+item.latitude+"\n"
+                                                             +"经度："+item.longitude+"\n"
+                                                             +"状态："+item.statues+"\n"
+                                                             +"车型："+item.type;
+												var infoWindow = new BMap.InfoWindow(content, opts);  // 创建信息窗口对象    
+												
+											    marker2.addEventListener("click", function(){
+                                                     map.openInfoWindow(infoWindow, pt); // 打开信息窗口   
+                                                });
+                                     
+		                                })
+								
+								}
+	
+							}
+						});
+
+		}*/
+	</script> 
+<script type="text/javascript">
+		function showTheLocation(node) {
+			var latitude = node.attr("latitude");
+			var longtitude = node.attr("longtitude");
+			gmap.setZoom(17);
+            gmap.setCenter( [longtitude,
+															latitude ]);
+		}
+	</script>
+	<script type="text/javascript">
+	function initialtable(){
+	var pages = $("#pages").val();
+			var re = /^[0-9]+.?[0-9]*$/; //判断字符串是否为数字 //判断正整数 /^[1-9]+[0-9]*]*$/ 	
+			if (!re.test(pages)) {
+				layer.alert("请输入数字");
+				return false;
+			}
+	$
+						.ajax({
+							url : "http://localhost:8080/easybike/restful/bike/getBikeByPage",
+							type : "post",
+							dataType : "json",
+							data : {
+								"PNO" : pages,
+						        "PSIZE" : "10"
+					       },
+							success : function(result) {
+								var r = result;
+								var obj = r.obj;
+								var retcode = r.retcode;
+								var errorMsg = r.errorMsg;
+								if (retcode != "0000") {
+									alert(errorMsg);
+								} else {
+								$("#usertbody").empty(); 
+								    $.each(obj,
+								             function(index,
+								               item){
+								               var node = $("#usertbody");
+	                                           var shtml = "<tr data='"+item.bikeId+"'><td>"+item.bikeId+"</td>"
+									                 +"<td>"+item.latitude+"</td>"
+									                 +"<td>"+item.longitude+"</td>"
+									                 +"<td>"+item.statues+"</td><td>"+item.type+"</td>"
+									                 + "<td>"
+											     	 + "<img src='assets/img/edituser.png' height = '20' width = '20' alt='编辑信息' title='编辑信息' data='" + item.bikeId+ "' onclick='editBike($(this));'/>"
+													 + "&nbsp;&nbsp;<img src='assets/img/modifyPassword.png' height = '20' width = '20' alt='修改密码' title='修改密码' data='" + item.bikeId+ "' onclick='modifyPassword($(this));'/>"
+													 + "&nbsp;&nbsp;<img src='assets/img/delete.png' height = '20' width = '20' alt='删除单车' title='删除单车' data='" + item.bikeId+ "' onclick='deleteBike($(this));'/></div></div></td></tr>";
+								      	      var node = $("#usertbody");
+		                                      node.append(shtml);
+		                                })
+								}
+							}
+						});
+	}
+	</script>
+    <script type="text/javascript">
+  /* function chooseBike(bike_id){
+    $
+						.ajax({
+							url : "http://localhost:8080/easybike/restful/bike/getAllBike",
+							type : "post",
+							success : function(result) {
+								var r = $.parseJSON(result);
+								var obj = r.obj;
+								var retcode = r.retcode;
+								var errorMsg = r.errorMsg;
+								if (retcode == "0001") {
+									alert(errorMsg);
+								} else {
+								    $
+								       .each(
+								             obj,
+								             function(index,
+								               item){
+                                             if(item.bike_id==bike_id){
+                                             gmap.clearOverlays();
+                                             var myIcon = new BMap.Icon("http://115.159.35.11:8080/easybike/assets/img/bike_marker.png",
+													new BMap.Size(50, 50));
+												var pt = new BMap.Point(item.longitude,
+													item.latitude);
+												var marker2 = new BMap.Marker(pt, {
+													icon : myIcon
+												}); // 创建标注
+												map.addOverlay(marker2); // 将标注添加到地图中
+											
+                                                var opts = {    
+                                                  width : 100,     // 信息窗口宽度    
+											      height: 100,     // 信息窗口高度    
+												  title : "BikeInfo"  // 信息窗口标题   
+                                                 }    
+                                                 var content="ID："+item.bike_id+"\n"
+                                                             +"纬度："+item.latitude+"\n"
+                                                             +"经度："+item.longitude+"\n"
+                                                             +"状态："+item.statues+"\n"
+                                                             +"车型："+item.type;
+												var infoWindow = new BMap.InfoWindow(content, opts);  // 创建信息窗口对象    
+												
+											    marker2.addEventListener("click", function(){
+                                                     map.openInfoWindow(infoWindow, pt); // 打开信息窗口   
+                                                });
+                                        
+										     }                  
+		                                })
+								
+								}
+	
+							}
+						});
+    }*/
+    </script>
+
+	<script type="text/javascript">
+	function func(node){
+	var node=node;
+	}
+	</script>
+	
+<script type="text/javascript">
+		function modifyPassword(node) {
+			layer.open({
+				title : '修改密码',
+				content : "<div class='am-form-group'><div class='am-g'><label class='am-u-md-2 am-md-text-right am-padding-left-0' for='latitude'>请输入新密码</label>"
+					+ "<input class='am-u-md-10 form-control'  placeholder='密码' id = 'password'></div></div>",
+				area : '800px',
+				yes : function(index) {
+					var i = layer.load(1);
+                    $
+						.ajax({
+							url : "http://localhost:8080/easybike/restful/bike/modifyBikePassword",
+							type : "post",
+							dataType : "json",
+							data : {
+						         "bikeID" : node.attr("data"),
+						         "password" : $("#password").val()
+					        },
+							success : function(result) {
+								var r = result;
+								var obj = r.obj;
+								var retcode = r.retcode;
+								var errorMsg = r.errorMsg;
+								if (retcode == "0001") {
+									alert(errorMsg);
+								} else {
+								    layer.alert("密码修改成功");
+									layer.close(i);
+									window.location.reload(); //刷新当前页面.
+		                      }	
+						  }
+						});
+				}
+			});
+		}
+	</script>
+	
+	<script type="text/javascript">
+		function editBike(node) {
+			layer.open({
+				title : '编辑信息',
+				content : "<div class='am-form-group'><div class='am-g'><label class='am-u-md-2 am-md-text-right am-padding-left-0' for='latitude'>纬度</label>"
+					+ "<input class='am-u-md-10 form-control'  placeholder='纬度' id = 'latitude'></div></div>"
+					+ "<div class='am-form-group'><div class='am-g'><label class='am-u-md-2 am-md-text-right am-padding-left-0' for='longitude'>经度</label>"
+					+ "<input class='am-u-md-10 form-control'  placeholder='经度' id = 'longitude'></div></div>"
+					+ "<div class='am-form-group'><div class='am-g'><label class='am-u-md-2 am-md-text-right' for='doc-select-1'>状态</label>"
+					+ "<select id='doc-select-1'><option value='lock'>lock</option><option value='unlock'>unlock</option></select> <span class='am-form-caret'></span></div></div>"
+					+ "<div class='am-form-group'><div class='am-g'><label class='am-u-md-2 am-md-text-right am-padding-left-0' for='type'>车型</label>"
+					+ "<input class='am-u-md-10 form-control'  placeholder='车型' id = 'type'></div></div>",
+				area : '500px',
+				success : function(layero, index) {
+					$("#latitude").val(node.parent().prev().prev().prev().prev().text());
+					$("#longitude").val(node.parent().prev().prev().prev().text());
+					$("#doc-select-1").val(node.parent().prev().prev().text());
+					$("#type").val(node.parent().prev().text());
+				},
+				yes : function(index, layero) {
+					var i = layer.load(1);
+					$
+						.ajax({
+							url : "http://localhost:8080/easybike/restful/bike/editBike",
+							type : "post",
+							dataType : "json",
+							data : {
+								"bikeID" : node.attr("data"),
+								"statu" : $("#doc-select-1").find("option:selected").text(),
+								"latitude" : $("#latitude").val(),
+								"longitude" : $("#longitude").val(),
+								"type" : $("#type").val()
+							},
+							success : function(result) {
+								var r = result;
+								var obj = r.obj;
+								var retcode = r.retcode;
+								var errorMsg = r.errorMsg;
+								if (retcode != "0000") {
+									layer.alert(errorMsg);
+									layer.close(i);
+								} else {
+									layer.alert("信息修改成功");
+									layer.close(i);
+									window.location.reload(); //刷新当前页面.
+								}
+	
+							}
+						});
+				}
+			});
+		}
+	</script>
+<script type="text/javascript">
+		function deleteBike(node) {
+			layer.open({
+				title : '删除单车',
+				content : "<div class='am-form-group'><div class='am-g'><label class='am-u-md-2 am-md-text-right am-padding-left-0' for='latitude'>确定要删除吗？</label></div></div>",
+				area : '800px',
+				yes : function(index) {
+					var i = layer.load(1);
+                    $
+						.ajax({
+							url : "http://localhost:8080/easybike/restful/bike/deleteBike",
+							type : "post",
+							dataType : "json",
+							data : {
+						         "bikeID" : node.attr("data"),
+					        },
+							success : function(result) {
+								var r = result;
+								var obj = r.obj;
+								var retcode = r.retcode;
+								var errorMsg = r.errorMsg;
+								if (retcode == "0001") {
+									alert(errorMsg);
+								} else {
+								    layer.alert("删除成功");
+									layer.close(i);
+									window.location.reload(); //刷新当前页面.
+		                      }	
+						  }
+						});
+				}
+			});
+		}
+	</script>
+</body>
+</html>
