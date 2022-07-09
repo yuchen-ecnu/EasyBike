@@ -6,7 +6,7 @@
     "react-scripts": "0.8.4"
   },
   "dependencies": {
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.21",
     "material-ui": "^0.16.7",
     "moment": "^2.29.4",
     "react": "^15.4.2",
